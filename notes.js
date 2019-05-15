@@ -14,8 +14,9 @@ const addNote = (title, body) => {
       body
     });
     saveNote(notes);
+    console.log(chalk.green("Note added successfully."));
   } else {
-    console.log("Duplicate note title. Please, choose another");
+    console.log(chalk.red("Note title taken. Please, choose another"));
   }
 };
 
