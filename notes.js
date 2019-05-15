@@ -20,6 +20,17 @@ const addNote = (title, body) => {
     console.log(chalk.red("Note title taken. Please, choose another"));
   }
 };
+const readNote = title => {
+  const notes = loadNotes();
+  const findNote = notes.find(note => note.title === title);
+  if (!findNote) {
+    console.log(chalk.red(`Note with title, '${title}', not found.`));
+  } else {
+    console.log(chalk.blue("NOTE DETAILS:"));
+    console.log(chalk.green(findNote.title));
+    console.log(findNote.body);
+  }
+};
 const listNotes = () => {
   console.log(chalk.blue("YOUR NOTES:"));
   const notes = loadNotes();
@@ -54,4 +65,4 @@ const loadNotes = () => {
   }
 };
 
-module.exports = { getNotes, addNote, removeNote, listNotes };
+module.exports = { getNotes, addNote, removeNote, listNotes, readNote };
