@@ -19,6 +19,13 @@ const addNote = (title, body) => {
     console.log(chalk.red("Note title taken. Please, choose another"));
   }
 };
+const listNotes = () => {
+  console.log(chalk.blue("YOUR NOTES:"));
+  const notes = loadNotes();
+  notes.map(note => {
+    console.log(chalk.green(note.title));
+  });
+};
 
 const removeNote = title => {
   const notes = loadNotes();
@@ -46,4 +53,4 @@ const loadNotes = () => {
   }
 };
 
-module.exports = { getNotes, addNote, removeNote };
+module.exports = { getNotes, addNote, removeNote, listNotes };
