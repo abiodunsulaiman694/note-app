@@ -1,23 +1,5 @@
-// const fs = require("fs");
-
-// fs.appendFileSync("notes.txt", "Writing to note with node. ");
-// fs.appendFileSync("notes.txt", "I believe");
-// const validator = require("validator");
-// const chalk = require("chalk");
-// const log = console.log;
-
-// const getNotes = require("./notes");
-// console.log(getNotes("Abiodun"));
-// console.log(validator.isEmail("hello"));
-
-// log(chalk.blue.italic.inverse("Success!"));
-
 const yargs = require("yargs");
 const notes = require("./notes");
-
-//Customize yargs version
-// yargs.version("1.1.0")
-
 //add, remove, read, list notes
 
 //Create add command
@@ -60,7 +42,7 @@ yargs.command({
   command: "list",
   describe: "List notes!",
   handler: function(argv) {
-    console.log("Listing a new note", argv);
+    notes.listNotes();
   }
 });
 
@@ -68,8 +50,13 @@ yargs.command({
 yargs.command({
   command: "read",
   describe: "Read a note!",
-  handler: function() {
-    console.log("Reading a new note");
+  title: {
+    describe: "The title of the note you want to read",
+    demandOption: true,
+    type: "string"
+  },
+  handler: function(argv) {
+    notes.readNote(argv.title);
   }
 });
 
